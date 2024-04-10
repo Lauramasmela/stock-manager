@@ -20,7 +20,7 @@ public class Address extends AbstractEntity {
 
     private Integer zipCode;
 
-    private String City;
+    private String city;
 
     private String county;
 
