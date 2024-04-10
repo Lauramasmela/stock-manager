@@ -1,6 +1,5 @@
 package com.lsof.stockmanager.dto;
 
-import com.lsof.stockmanager.model.Role;
 import com.lsof.stockmanager.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,6 +11,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 public class UserDto {
+
+    private Integer id;
 
     private String firstname;
 
@@ -40,8 +41,8 @@ public class UserDto {
      * @param userDto u
      * @return user object
      */
-    public static UserDto toEntity(UserDto userDto){
-        return UserDto.builder()
+    public static User toEntity(UserDto userDto){
+        return User.builder()
                 .firstname(userDto.getFirstname())
                 .lastname(userDto.getLastname())
                 .email(userDto.getEmail())
