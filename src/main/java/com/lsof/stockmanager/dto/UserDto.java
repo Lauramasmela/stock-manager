@@ -1,10 +1,13 @@
 package com.lsof.stockmanager.dto;
 
 import com.lsof.stockmanager.model.User;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -14,13 +17,30 @@ public class UserDto {
 
     private Integer id;
 
+    @NotNull
+    @NotEmpty
+    @NotBlank
     private String firstname;
 
+    @NotNull
+    @NotEmpty
+    @NotBlank
     private String lastname;
 
+    @NotNull
+    @NotEmpty
+    @NotBlank
+    @Email
     private String email;
 
+    @NotNull
+    @NotEmpty
+    @NotBlank
+    @Size(min = 8, max = 16)
     private String password;
+
+    @Past
+    private LocalDateTime birthday;
 
     /**
      * Converts an user object to a userDto
