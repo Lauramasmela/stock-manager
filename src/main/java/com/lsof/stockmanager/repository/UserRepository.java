@@ -1,4 +1,4 @@
-package com.lsof.stockmanager.Repository;
+package com.lsof.stockmanager.repository;
 
 import com.lsof.stockmanager.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, Integer> {
 
     // select * from user where = 'sof'
     List<User> findAllByFirstname(String firstname);
