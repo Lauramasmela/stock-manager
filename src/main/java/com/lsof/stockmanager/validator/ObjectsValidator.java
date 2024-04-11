@@ -1,5 +1,6 @@
-package com.lsof.stockmanager;
+package com.lsof.stockmanager.validator;
 
+import com.lsof.stockmanager.Repository.exception.ObjectValidationException;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
@@ -17,15 +18,21 @@ public class ObjectsValidator<T> {
 
 
 
-    public void validate(T objectValidate){
-        Set<ConstraintViolation<T>> violations =  validator.validate(objectValidate);
+    public void validate(T objectToValidate){
+        Set<ConstraintViolation<T>> violations =  validator.validate(objectToValidate);
 
         if(!violations.isEmpty()){
             Set<String> errorMessages = violations.stream()
                     .map(ConstraintViolation::getMessage)
                     .collect(Collectors.toSet());
+            throw new ObjectValidationException(
+                    errorMessages,
+                    objectToValidate.getClass().getName()
+            );
 
         }
+
+
 
     }
 }
