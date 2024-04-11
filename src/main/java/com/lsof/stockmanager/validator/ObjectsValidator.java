@@ -1,6 +1,6 @@
 package com.lsof.stockmanager.validator;
 
-import com.lsof.stockmanager.Repository.exception.ObjectValidationException;
+import com.lsof.stockmanager.exception.ObjectValidationException;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
