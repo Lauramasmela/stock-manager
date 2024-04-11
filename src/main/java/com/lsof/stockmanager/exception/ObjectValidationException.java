@@ -1,4 +1,4 @@
-package com.lsof.stockmanager.Repository.exception;
+package com.lsof.stockmanager.exception;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
