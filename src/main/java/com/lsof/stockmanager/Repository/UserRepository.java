@@ -22,7 +22,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findAllByAccount_Iban(String iban);
 
     // select * from user where firstname = 'sof%' and u.email = 'email@factory.com'
-    User findByFirstnameContainingIngoreCaseAndEmail(String firstname, String email);
+    User findByFirstnameContainingIgnoreCaseAndEmail(String firstname, String email);
 
     // select * from user where = 'Sof'
     @Query("from User where firstname = :fn")
