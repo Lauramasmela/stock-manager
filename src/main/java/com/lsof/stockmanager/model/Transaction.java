@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 @SuperBuilder
 @AllArgsConstructor
 @Entity
-public class Transaction extends AbstractEntity {
+public class Transaction extends GenericEntity {
 
     private BigDecimal amount;
 

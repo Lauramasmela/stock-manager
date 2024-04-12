@@ -11,7 +11,7 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Address extends AbstractEntity {
+public class Address extends GenericEntity {
 
     private String street;
 

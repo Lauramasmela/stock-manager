@@ -11,7 +11,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @AllArgsConstructor
 @Entity
-public class Role extends AbstractEntity {
+public class Role extends GenericEntity {
 
     private String role;
 

@@ -11,7 +11,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @AllArgsConstructor
 @Entity
-public class Contact extends AbstractEntity {
+public class Contact extends GenericEntity {
 
     private String firstname;
 
