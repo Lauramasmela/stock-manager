@@ -3,7 +3,7 @@ package com.lsof.stockmanager.service;
 
 import java.util.List;
 
-public interface DbService<T> {
+public interface GenericDbService<T> {
 
     Integer save(T dto);
 
