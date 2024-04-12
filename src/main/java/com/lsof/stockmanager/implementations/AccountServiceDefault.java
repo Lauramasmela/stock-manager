@@ -58,7 +58,7 @@ public class AccountServiceDefault implements AccountServiceContract {
 
     @Override
     public void delete(Integer id) {
-
+        repository.deleteById(id);
     }
 
     private String generateRandomIban(){
