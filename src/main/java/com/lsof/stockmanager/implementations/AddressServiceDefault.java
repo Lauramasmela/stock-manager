@@ -1,7 +1,6 @@
 package com.lsof.stockmanager.implementations;
 
 import com.lsof.stockmanager.dto.AddressDto;
-import com.lsof.stockmanager.model.Account;
 import com.lsof.stockmanager.model.Address;
 import com.lsof.stockmanager.repository.AddressRepository;
 import com.lsof.stockmanager.service.AddressServiceContract;
@@ -40,12 +39,11 @@ public class AddressServiceDefault implements AddressServiceContract {
     public AddressDto findById(Integer id) {
         return repository.findById(id)
                 .map(address -> AddressDto.fromEntity(address))
-                .orElseThrow(()-> new EntityNotFoundException("No address was found with provided id"))
+                .orElseThrow(()-> new EntityNotFoundException("No address was found with provided id"));
     }
 
     @Override
     public void delete(Integer id) {
         repository.deleteById(id);
-
     }
 }
