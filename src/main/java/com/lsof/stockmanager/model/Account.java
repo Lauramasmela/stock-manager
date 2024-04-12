@@ -12,7 +12,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @AllArgsConstructor
 @Entity
-public class Account extends AbstractEntity{
+public class Account extends GenericEntity {
 
     private String iban;
 

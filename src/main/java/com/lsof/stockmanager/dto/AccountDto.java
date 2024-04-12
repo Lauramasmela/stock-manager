@@ -18,7 +18,7 @@ public class AccountDto {
 
     private UserDto user;
 
-    public static AccountDto fromEntity(Account account, String iban){
+    public static AccountDto fromEntity(Account account){
         return AccountDto.builder()
                 .id(account.getId())
                 .iban(account.getIban())
