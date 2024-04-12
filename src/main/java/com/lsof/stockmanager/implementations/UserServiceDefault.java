@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class UserService implements UserServiceContract {
+public class UserServiceDefault implements UserServiceContract {
 
     private final UserRepository repository;
     private final ObjectsValidator<UserDto> objectsValidator;

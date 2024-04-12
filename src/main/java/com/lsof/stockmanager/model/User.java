@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "_user")
-public class User extends AbstractEntity{
+public class User extends GenericEntity {
 
     private String firstname;
 
