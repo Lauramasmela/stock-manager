@@ -56,4 +56,12 @@ public class TransactionServiceDefault implements TransactionServiceContract {
     private int transactionType(TransactionType type){
         return TransactionType.TRANSFERT == type ? -1 : 1;
     }
+
+    @Override
+    public List<TransactionDto> findAllByUserId(Integer userId) {
+        return repository.findAllByUserId(userId)
+                .stream()
+                .map(transaction -> TransactionDto.fromEntity(transaction))
+                .collect(Collectors.toList());
+    }
 }

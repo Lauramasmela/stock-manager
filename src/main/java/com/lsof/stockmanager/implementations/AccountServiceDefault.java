@@ -36,6 +36,15 @@ public class AccountServiceDefault implements AccountServiceContract {
 
         objectsValidator.validate(dto);
         Account account = AccountDto.toEntity(dto);
+        boolean userHasAlreadyAnAccount = repository.findByUserId(account.getUser().getId()).isPresent();
+        if(userHasAlreadyAnAccount){
+            throw new OperationNonPermittedException(
+                    "The selected user has already an account",
+                    "Create account",
+                    "Account service",
+                    "Account creation"
+            );
+        }
         account.setIban(generateRandomIban());
         Account accountSaved = repository.save(account);
         return accountSaved.getId();
