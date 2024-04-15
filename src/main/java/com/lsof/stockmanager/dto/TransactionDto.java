@@ -5,6 +5,7 @@ import com.lsof.stockmanager.model.TransactionType;
 import com.lsof.stockmanager.model.User;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -20,6 +21,7 @@ public class TransactionDto {
 
     private Integer id;
 
+    @Positive
     private BigDecimal amount;
 
     @Enumerated(EnumType.STRING)
