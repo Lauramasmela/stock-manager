@@ -7,5 +7,5 @@ public interface UserServiceContract extends GenericDbService<UserDto> {
 
     Integer validateAccount(Integer id);
 
-    Integer invalidateaccount(Integer id);
+    Integer invalidateAccount(Integer id);
 }

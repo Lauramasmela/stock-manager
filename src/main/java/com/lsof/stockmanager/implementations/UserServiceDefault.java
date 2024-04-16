@@ -1,8 +1,6 @@
 package com.lsof.stockmanager.implementations;
 
 import com.lsof.stockmanager.dto.AccountDto;
-import com.lsof.stockmanager.model.Account;
-import com.lsof.stockmanager.repository.AccountRepository;
 import com.lsof.stockmanager.repository.UserRepository;
 import com.lsof.stockmanager.dto.UserDto;
 import com.lsof.stockmanager.model.User;
@@ -71,7 +69,7 @@ public class UserServiceDefault implements UserServiceContract {
     }
 
     @Override
-    public Integer invalidateaccount(Integer id) {
+    public Integer invalidateAccount(Integer id) {
         User user  = userRepository.findById(id)
                 .orElseThrow(()-> new EntityNotFoundException("No user was found for user account validation "));
         user.setActive(false);
