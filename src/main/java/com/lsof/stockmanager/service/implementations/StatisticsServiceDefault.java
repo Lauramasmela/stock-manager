@@ -1,4 +1,4 @@
-package com.lsof.stockmanager.implementations;
+package com.lsof.stockmanager.service.implementations;
 
 import com.lsof.stockmanager.model.TransactionType;
 import com.lsof.stockmanager.repository.TransactionRepository;
