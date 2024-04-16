@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -38,5 +39,13 @@ public class ContactServiceDefault implements ContactServiceContract {
     @Override
     public void delete(Integer id) {
 
+    }
+
+    @Override
+    public List<ContactDto> findAllByUserId(Integer userId) {
+        return repository.findAllByUserId(userId)
+                .stream()
+                .map(contact -> ContactDto.fromEntity(contact))
+                .collect(Collectors.toList());
     }
 }
