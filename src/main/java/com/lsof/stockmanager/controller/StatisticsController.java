@@ -1,12 +1,15 @@
 package com.lsof.stockmanager.controller;
 
+import com.lsof.stockmanager.dto.TransactionSumDetails;
 import com.lsof.stockmanager.service.StatisticsServiceContract;
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -17,9 +20,9 @@ public class StatisticsController {
     private final StatisticsServiceContract statisticsService;
 
     @GetMapping("/sum-by-date/{user-id}")
-    public ResponseEntity<Map<LocalDate, BigDecimal>> findSumTransactionsByDate(
-            @RequestParam("start-date") LocalDate startDate,
-            @RequestParam("end-date") LocalDate endDate,
+    public ResponseEntity<List<TransactionSumDetails>> findSumTransactionsByDate(
+            @RequestParam("start-date") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate startDate,
+            @RequestParam("end-date") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate endDate,
             @PathVariable("user-id")Integer userId){
         return ResponseEntity.ok(statisticsService.findSumTransactionsByDate(startDate, endDate, userId));
     }

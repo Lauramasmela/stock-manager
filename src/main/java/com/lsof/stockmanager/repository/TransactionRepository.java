@@ -1,6 +1,7 @@
 package com.lsof.stockmanager.repository;
 
 import com.lsof.stockmanager.dto.TransactionDto;
+import com.lsof.stockmanager.dto.TransactionSumDetails;
 import com.lsof.stockmanager.model.Transaction;
 import com.lsof.stockmanager.model.TransactionType;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -23,6 +24,8 @@ public interface TransactionRepository extends JpaRepository<Transaction, Intege
     @Query("select max(abs(t.amount)) as amount from Transaction t where t.user.id = :userId and t.type = :transactionType")
     BigDecimal findHighestAmountByTransactionType(Integer userId, TransactionType transactionType);
 
-    @Query("select t.createdDate, sum(t.amount) from Transaction t where t.user.id = :userId and t.createdDate between :start and :end group by t.createdDate")
-    Map<LocalDate, BigDecimal> findSumTransactionsByDate(LocalDateTime start, LocalDateTime end, Integer userId);
+    @Query("select t.transactionDate as transactionDate, sum(t.amount) as amount from Transaction t where t.user.id = :userId " +
+            "and t.createdDate " + "between :start and :end "
+            + "group by t.transactionDate")
+    List<TransactionSumDetails> findSumTransactionsByDate(LocalDateTime start, LocalDateTime end, Integer userId);
 }

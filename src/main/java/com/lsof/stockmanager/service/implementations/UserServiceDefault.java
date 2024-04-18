@@ -8,6 +8,7 @@ import com.lsof.stockmanager.service.AccountServiceContract;
 import com.lsof.stockmanager.service.UserServiceContract;
 import com.lsof.stockmanager.validator.ObjectsValidator;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -27,8 +28,7 @@ public class UserServiceDefault implements UserServiceContract {
     public Integer save(UserDto dto) {
         objectsValidator.validate(dto);
         User user = UserDto.toEntity(dto);
-        User savedUser = userRepository.save(user);
-        return savedUser.getId();
+        return userRepository.save(user).getId();
     }
 
     @Override
@@ -49,21 +49,21 @@ public class UserServiceDefault implements UserServiceContract {
 
     @Override
     public void delete(Integer id) {
-
-
+        userRepository.deleteById(id);
     }
 
     @Override
+    @Transactional
     public Integer validateAccount(Integer id) {
         User user  = userRepository.findById(id)
                 .orElseThrow(()-> new EntityNotFoundException("No user was found for user account validation "));
-        user.setActive(true);
 
         // create a bank account
         AccountDto accountDto = AccountDto.builder()
                 .user(UserDto.fromEntity(user))
                 .build();
         accountServiceContract.save(accountDto);
+        user.setActive(true);
         userRepository.save(user);
         return user.getId();
     }

@@ -36,11 +36,9 @@ public class UserDto {
     @NotNull
     @NotEmpty
     @NotBlank
-    @Size(min = 8, max = 16)
+    @Size(min = 8, max = 16, message = "password size must be between 8 and 16 characters long")
     private String password;
 
-    @Past
-    private LocalDateTime birthday;
 
     /**
      * Converts an user object to a userDto
@@ -53,7 +51,6 @@ public class UserDto {
                 .firstname(user.getFirstname())
                 .lastname(user.getLastname())
                 .email(user.getEmail())
-                .password(user.getPassword())
                 .build();
     }
 

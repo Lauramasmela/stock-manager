@@ -25,29 +25,31 @@ public class AccountServiceDefault implements AccountServiceContract {
     @Override
     public Integer save(AccountDto dto) {
 
-        if(dto.getId() != null){
-            throw new OperationNonPermittedException(
-                    "Account cannot be updated",
-                    "save account",
-                    "Account",
-                    "Update not permitted"
-            );
-        }
-
+        // block account update -> iban cannot be changed
+    /* if (dto.getId() != null) {
+      throw new OperationNonPermittedException(
+          "Account cannot be updated",
+          "save account",
+          "Account",
+          "Update not permitted"
+      );
+    }*/
         objectsValidator.validate(dto);
         Account account = AccountDto.toEntity(dto);
         boolean userHasAlreadyAnAccount = repository.findByUserId(account.getUser().getId()).isPresent();
-        if(userHasAlreadyAnAccount){
+        if (userHasAlreadyAnAccount && account.getUser().isActive()) {
             throw new OperationNonPermittedException(
-                    "The selected user has already an account",
+                    "the selected user has already an active account",
                     "Create account",
                     "Account service",
                     "Account creation"
             );
         }
-        account.setIban(generateRandomIban());
-        Account accountSaved = repository.save(account);
-        return accountSaved.getId();
+        // generate random IBAN when creating new account else do not update the IBAN
+        if (dto.getId() == null) {
+            account.setIban(generateRandomIban());
+        }
+        return repository.save(account).getId();
     }
 
     @Override
